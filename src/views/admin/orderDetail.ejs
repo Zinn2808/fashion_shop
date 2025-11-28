@@ -1,0 +1,216 @@
+<div class="container-detail">
+  <div class="detail-header">
+    <a href="/admin/orders" class="btn-back">← Quay lại danh sách</a>
+    <div class="order-meta">
+      <h1>Đơn hàng #<%= order._id.toString().slice(-6).toUpperCase() %></h1>
+      <span class="badge status-badge <%= order.status %>"> <%= order.status.toUpperCase() %> </span>
+    </div>
+  </div>
+
+  <div class="detail-grid">
+    <div class="info-card">
+      <h3>Thông tin khách hàng</h3>
+      <div class="info-row">
+        <strong>Họ tên:</strong>
+        <span><%= order.shipping.firstName %> <%= order.shipping.lastName %></span>
+      </div>
+      <div class="info-row">
+        <strong>Email:</strong>
+        <span><%= order.contactEmail || order.user.email %></span>
+      </div>
+      <div class="info-row">
+        <strong>SĐT:</strong>
+        <span><%= order.shipping.phone %></span>
+      </div>
+
+      <hr />
+
+      <h3>Địa chỉ giao hàng</h3>
+      <p class="address-text"><%= order.shipping.address %>, <%= order.shipping.city %></p>
+
+      <div class="info-row">
+        <strong>Phương thức thanh toán:</strong>
+        <span><%= order.paymentMethod || 'COD' %></span>
+      </div>
+    </div>
+
+    <div class="items-card">
+      <h3>Danh sách sản phẩm</h3>
+      <table class="table-items">
+        <thead>
+          <tr>
+            <th>Sản phẩm</th>
+            <th class="text-center">SL</th>
+            <th class="text-end">Đơn giá</th>
+            <th class="text-end">Thành tiền</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% order.items.forEach(item => { %>
+          <tr>
+            <td>
+              <div class="item-info">
+                <% if(item.product) { %>
+                <img src="<%= item.product.imageUrl || '/images/default.png' %>" alt="" width="50" />
+                <div>
+                  <p class="item-name"><%= item.product.title %></p>
+                  <small class="text-muted">ID: <%= item.product._id %></small>
+                </div>
+                <% } else { %>
+                <span class="text-danger">Sản phẩm này đã bị xóa</span>
+                <% } %>
+              </div>
+            </td>
+            <td class="text-center">x<%= item.quantity %></td>
+            <td class="text-end"><%= item.price.toLocaleString() %> ₫</td>
+            <td class="text-end fw-bold"><%= (item.price * item.quantity).toLocaleString() %> ₫</td>
+          </tr>
+          <% }) %>
+        </tbody>
+        <tfoot>
+          <tr>
+            <td colspan="3" class="text-end">Tạm tính:</td>
+            <td class="text-end"><%= (order.total).toLocaleString() %> ₫</td>
+          </tr>
+          <tr>
+            <td colspan="3" class="text-end"><strong>Tổng cộng:</strong></td>
+            <td class="text-end total-price"><%= order.total.toLocaleString() %> ₫</td>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
+  </div>
+</div>
+
+<style>
+  /* CSS CHO TRANG CHI TIẾT */
+  .container-detail {
+    max-width: 1000px;
+    margin: 30px auto;
+    font-family: "Segoe UI", sans-serif;
+  }
+
+  .detail-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #eee;
+  }
+
+  .btn-back {
+    text-decoration: none;
+    color: #555;
+    font-weight: 600;
+  }
+
+  .order-meta h1 {
+    font-size: 24px;
+    margin: 0;
+    display: inline-block;
+    margin-right: 10px;
+  }
+
+  .detail-grid {
+    display: grid;
+    grid-template-columns: 1fr 2fr; /* Cột trái nhỏ, cột phải to */
+    gap: 20px;
+  }
+
+  .info-card,
+  .items-card {
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    border: 1px solid #ddd;
+  }
+
+  .info-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    font-size: 14px;
+  }
+
+  .address-text {
+    background: #f9f9f9;
+    padding: 10px;
+    border-radius: 4px;
+    color: #333;
+  }
+
+  /* Bảng sản phẩm */
+  .table-items {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  .table-items th {
+    text-align: left;
+    border-bottom: 1px solid #ccc;
+    padding: 10px 0;
+    color: #666;
+    font-size: 13px;
+  }
+  .table-items td {
+    padding: 12px 0;
+    border-bottom: 1px dotted #eee;
+    vertical-align: middle;
+  }
+
+  .item-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .item-info img {
+    border-radius: 4px;
+    border: 1px solid #eee;
+  }
+  .item-name {
+    margin: 0;
+    font-weight: 600;
+    font-size: 14px;
+  }
+
+  .text-end {
+    text-align: right;
+  }
+  .text-center {
+    text-align: center;
+  }
+  .fw-bold {
+    font-weight: bold;
+  }
+
+  .total-price {
+    font-size: 18px;
+    color: #d9534f;
+    font-weight: bold;
+  }
+
+  /* Badge màu sắc (Copy từ trang list qua cũng được) */
+  .status-badge {
+    padding: 5px 10px;
+    border-radius: 4px;
+    color: #fff;
+    font-size: 12px;
+    font-weight: bold;
+  }
+  .pending {
+    background: #f0ad4e;
+  }
+  .processing {
+    background: #5bc0de;
+  }
+  .shipped {
+    background: #0275d8;
+  }
+  .delivered {
+    background: #5cb85c;
+  }
+  .cancelled {
+    background: #d9534f;
+  }
+</style>

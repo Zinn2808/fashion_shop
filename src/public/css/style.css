@@ -1,0 +1,1600 @@
+:root {
+  --red: #ed1d25;
+  --black: #222222;
+  --white: #ffffff;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+@font-face {
+  font-family: "SansSerifFLF";
+  src: url("/fonts/SansSerifFLF.otf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+body {
+  font-family: "Courier New", monospace;
+  margin: 0;
+  padding: 0;
+}
+
+/* ========================Header==================== */
+
+.header {
+  z-index: 1000;
+  position: sticky;
+  top: 0;
+  background-color: var(--white);
+  padding: 10px 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 10px 20px;
+}
+
+.navbar .logo-link {
+  flex: 0.5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.navbar .logo {
+  height: 40px;
+}
+
+.navbar .catalog {
+  gap: 40px;
+  font-size: 24px;
+  flex: 2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.navbar .catalog a {
+  font-family: "SansSerifFLF", sans-serif;
+  font-size: 28px;
+  text-decoration: none;
+  color: var(--black);
+  font-weight: bold;
+  flex: none;
+}
+
+.navbar .catalog a:hover {
+  transform: translateY(-2px);
+}
+
+.navbar .icons {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 40px;
+  flex: 0.5;
+  margin-right: 50px;
+}
+
+.navbar .icons a {
+  text-decoration: none;
+  color: var(--black);
+  flex: none;
+}
+
+.navbar .icons i {
+  font-size: 28px;
+}
+
+.navbar .icons a:hover {
+  transform: translateY(-2px);
+}
+
+/* ========================Home==================== */
+.intro {
+  position: relative;
+  text-align: center;
+  color: var(--white);
+}
+.intro img {
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: auto;
+  max-height: 900px;
+  object-fit: cover;
+  filter: brightness(40%);
+}
+
+.intro .intro-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  animation: fadeInAnimation 2s ease-in;
+}
+
+.intro .intro-text h1 {
+  font-size: 120px;
+  margin: 0;
+  color: transparent;
+  background-clip: text;
+  -webkit-background-clip: text;
+  background-image: linear-gradient(to right, #f4f4f4, #7e7c7c);
+}
+.intro .intro-text p {
+  font-size: 20px;
+  font-family: "Courier New", monospace;
+}
+
+/* ========================Featured==================== */
+.featured,
+.bestSellers,
+.brand {
+  padding: 50px 20px;
+  text-align: center;
+}
+.featured .featured-text h1,
+.bestSellers .bestSellers-text h1,
+.brand .brand-text h1 {
+  font-size: 80px;
+  margin: 0;
+  color: var(--black);
+}
+.featured .featured-text p,
+.bestSellers .bestSellers-text p,
+.brand .brand-text p {
+  font-size: 20px;
+  font-family: "Courier New", monospace;
+  margin-bottom: 50px;
+}
+
+.grid {
+  display: grid;
+  gap: 50px;
+  margin-top: 50px;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: 1fr;
+  margin: 0 40px;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  text-align: center;
+  transition: box-shadow 0.3s ease;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.card img {
+  width: 100%;
+  object-fit: cover;
+  transition: filter 0.5s ease;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  transition: all 0.7s ease;
+}
+
+.card a img:hover {
+  transform: scale(1.1);
+}
+
+.card .container {
+  flex: 1;
+  display: flex;
+  align-items: center;
+}
+
+.card .container h3,
+a {
+  font-family: "Courier New", monospace;
+  text-decoration: none;
+  color: var(--black);
+  font-size: 14px;
+  font-weight: bold;
+  flex: 1;
+  text-align: left;
+  transition: color 0.3s ease;
+}
+
+.card .container h3 a:hover {
+  background-color: var(--red);
+  color: var(--white);
+}
+
+.card .container p {
+  font-family: "Courier New", monospace;
+  font-size: 14px;
+  color: var(--white);
+  background-color: var(--red);
+  font-weight: bold;
+  flex: none;
+  padding: 0 5px;
+}
+
+.btn-view-more {
+  margin: 40px;
+  padding: 15px 30px;
+  font-size: 20px;
+  font-family: "Courier New", monospace;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.5s ease;
+  background-color: transparent;
+  background-color: var(--red);
+  color: var(--white);
+}
+.btn-view-more:hover {
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+  transform: translateY(-2px);
+}
+
+/* ========================All Products==================== */
+.title-All-product {
+  text-align: center;
+  padding: 40px 0 20px 0;
+  background-color: var(--black);
+}
+.title-All-product h1 {
+  font-family: "Futura", sans-serif;
+  font-size: 60px;
+  margin: 0;
+  color: var(--white);
+  text-transform: uppercase;
+}
+.title-All-product p {
+  font-family: "Courier New", monospace;
+  font-size: 20px;
+  color: var(--white);
+}
+
+.filters {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 70px;
+  padding: 40px 0;
+  margin-bottom: 40px;
+  border-bottom: 1px solid var(--black);
+}
+
+.filters .search-bar {
+  position: relative;
+}
+
+.filters .search-bar i {
+  position: absolute;
+  top: 50%;
+  left: 10px;
+  transform: translateY(-50%);
+  color: var(--black);
+}
+
+.filters .search-bar input {
+  width: 200px;
+  padding: 10px 40px;
+  border: 1px solid var(--black);
+  border-radius: 2px;
+  font-family: "Courier New", monospace;
+  font-size: 16px;
+  color: var(--black);
+}
+
+.filters .categories {
+  display: flex;
+  gap: 20px;
+}
+
+.filters .categories button {
+  background-color: transparent;
+  border: 1px solid var(--black);
+  border-radius: 2px;
+  font-family: "Courier New", monospace;
+  font-size: 18px;
+  cursor: pointer;
+  color: var(--black);
+  transition: color 0.3s ease;
+  padding: 5px 10px;
+}
+
+.filters .categories button.active {
+  background-color: var(--black);
+  color: var(--white);
+}
+
+/* ========================Product Detail==================== */
+
+.container-product-detail {
+  width: 700px;
+  height: 500px;
+  margin: 180px auto;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 1px 2px 4px rgba(0, 0, 0, 0.3);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+}
+
+.container-product-detail h1 {
+  font-family: "Courier New", monospace;
+  font-size: 24px;
+  margin: 0;
+  color: var(--black);
+}
+
+.container-product-detail p {
+  font-family: "Courier New", monospace;
+  font-size: 14px;
+  color: var(--black);
+  margin: 0;
+}
+
+.container-product-detail .money {
+  font-family: "Courier New", monospace;
+  font-size: 18px;
+  margin: 0;
+}
+
+.container-product-detail .img-product-detail {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container-product-detail .info-product-detail {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/*  */
+
+.container-color-size {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.color-options,
+.size-options {
+  font-family: "Courier New", monospace;
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.color-swatch {
+  background-color: transparent;
+  font-family: "Courier New", monospace;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+}
+.color-swatch.active {
+  background: var(--red);
+  color: var(--white);
+}
+
+.size-pill input {
+  display: none;
+}
+.size-pill span {
+  cursor: pointer;
+  font-family: "Courier New", monospace;
+  font-size: 14px;
+  border: none;
+  padding: 0 10px;
+}
+.size-pill input:checked + span {
+  background: var(--red);
+  color: var(--white);
+}
+
+.container-cart-back {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.container-cart-back button {
+  background-color: var(--red);
+  color: var(--white);
+  padding: 10px 35px;
+  font-weight: 600;
+  border: none;
+  font-size: 12px;
+  cursor: pointer;
+  flex: none;
+  font-family: "Courier New", monospace;
+}
+
+.container-cart-back a {
+  flex: none;
+  text-decoration: none;
+  color: var(--white);
+  font-size: 12px;
+  background-color: var(--black);
+  padding: 10px 15px;
+}
+
+/* ========================Signup==================== */
+
+.container-signup {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  max-width: 900px;
+  margin: 200px auto;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 1px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.img-container {
+  position: relative;
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  animation: slideInLeftAnimation 0.7s ease-in-out;
+}
+
+.img-container img {
+  position: relative;
+  width: 100%;
+  height: auto;
+  max-height: 500px;
+  object-fit: cover;
+  border-radius: 5px;
+}
+
+.img-container .back {
+  position: absolute;
+  background-color: rgba(255, 255, 255, 0.5);
+  padding: 0 5px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  top: 10px;
+  right: 20px;
+}
+
+.img-container .back a {
+  text-decoration: none;
+  color: var(--black);
+  font-size: 12px;
+}
+
+.form-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 500px;
+  animation: slideInRightAnimation 0.7s ease-in-out;
+}
+
+.form-container h1 {
+  font-family: "SansSerifFLF", sans-serif;
+  font-size: 46px;
+  margin-bottom: 5px;
+  color: var(--black);
+}
+
+.form-container p {
+  font-family: "Courier New", monospace;
+  font-size: 12px;
+  margin: 10px 0 40px 0;
+}
+
+.form-container a {
+  text-decoration: none;
+  color: var(--red);
+  font-size: 12px;
+  border-bottom: 1px solid var(--red);
+}
+
+.form-container form {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  width: 80%;
+  margin-top: 20px;
+}
+
+.form-container input {
+  padding: 15px;
+  border: 1px solid var(--black);
+  border-radius: 5px;
+  font-size: 14px;
+  font-family: monospace;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+  outline: none;
+  font-family: "Courier New", monospace;
+}
+
+.form-container input:focus {
+  border-color: var(--red);
+}
+
+.form-container .terms {
+  font-size: 12px;
+  font-family: "Courier New", monospace;
+}
+
+.form-container .terms label {
+  margin-left: 5px;
+}
+
+.form-container button {
+  padding: 15px;
+  background-color: var(--black);
+  color: var(--white);
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  font-family: "Courier New", monospace;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin: 10px 0;
+}
+
+/* =============================Cart ==================== */
+
+.container-cart {
+  position: relative;
+  max-width: 900px;
+  max-height: 600px;
+  margin: 180px auto;
+  display: flex;
+  flex-direction: column;
+  border: dotted 1px var(--black);
+  box-shadow: 5px 5px 0px rgba(0, 0, 0, 0.1);
+}
+
+.container-cart h1 {
+  font-family: "Courier New", monospace;
+  font-size: 14px;
+  padding: 10px;
+  color: var(--black);
+  text-align: center;
+  margin: 0;
+  border-bottom: dotted 1px var(--black);
+}
+
+.cart-items {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow-y: auto;
+  padding-bottom: 259px;
+}
+
+.count-items {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 10px;
+  width: 95%;
+  font-family: "Courier New", monospace;
+  font-size: 14px;
+  color: var(--black);
+  border-bottom: dotted 1px var(--black);
+  width: auto;
+}
+
+.count-items p {
+  margin: 0;
+}
+
+.count-items span {
+  position: absolute;
+  right: 0px;
+  bottom: 57px;
+  padding: 20px 10px;
+  font-weight: 600;
+  color: var(--black);
+  background-color: var(--white);
+  border-top: dotted 1px var(--black);
+  border-left: dotted 1px var(--black);
+}
+
+.cart-item {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  border-bottom: dotted 1px var(--black);
+}
+.item-image {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex: 1;
+}
+.item-image img {
+  width: 100px;
+  height: auto;
+  object-fit: cover;
+  padding: 5px 10px;
+  border-right: dotted 1px var(--black);
+}
+.item-details {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex: 4.5;
+}
+
+.item-details .item-details-info {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  width: 100%;
+}
+
+.item-details .item-name {
+  font-weight: 600;
+}
+
+.item-details .item-details-info p {
+  font-family: "Courier New", monospace;
+  font-size: 14px;
+  margin: 0;
+}
+
+.item-details button {
+  align-items: center;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  width: 100px;
+  height: 30px;
+  background-color: var(--black);
+  display: flex;
+  justify-content: center;
+  font-weight: 600;
+  font-family: "Courier New", monospace;
+}
+.item-details button p {
+  font-size: 14px;
+  align-items: center;
+  color: var(--white);
+  margin: 0;
+}
+
+.item-details button:hover {
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+  transform: translateY(-2px);
+}
+
+.item-price {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex: 1;
+}
+
+.item-price p {
+  font-family: "Courier New", monospace;
+  font-weight: 600;
+  font-size: 14px;
+  padding: 20px 10px;
+  margin: 0;
+}
+
+.cart-actions {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 10px 16px;
+  background-color: var(--white);
+  gap: 20px;
+  border-top: dotted 1px var(--black);
+}
+
+.cart-actions a {
+  font-family: "Courier New", monospace;
+  font-size: 14px;
+  text-align: center;
+  flex: 0 0 auto;
+  border: none;
+  cursor: pointer;
+  width: 150px;
+  padding: 10px 0;
+}
+
+.cart-actions .btn {
+  color: var(--white);
+  text-decoration: none;
+  background-color: var(--red);
+}
+
+.cart-actions .btn-back {
+  color: var(--white);
+  text-decoration: none;
+  background-color: var(--black);
+}
+
+.cart-actions a:hover {
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+  transform: translateY(-2px);
+}
+
+/* empty state */
+.cart-empty {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.cart-empty p {
+  width: 100%;
+  height: 300px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  font-family: "Courier New", monospace;
+  font-weight: 600;
+  font-size: 28px;
+  margin: 0;
+  color: var(--black);
+  border-bottom: dotted 1px var(--black);
+}
+
+.cart-empty-actions {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 150px;
+  gap: 100px;
+}
+
+.cart-empty-actions a {
+  text-decoration: none;
+  color: var(--black);
+  font-size: 16px;
+}
+
+.cart-empty-actions a.btn-alt {
+  background-color: var(--red);
+  color: var(--white);
+  padding: 10px 50px;
+}
+.cart-empty-actions a.btn {
+  padding: 10px 30px;
+  background-color: var(--black);
+  color: var(--white);
+}
+
+.cart-empty-actions button {
+  border: none;
+  cursor: pointer;
+  background-color: transparent;
+}
+
+.cart-empty-actions a:hover {
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+.cart-empty-actions button:hover {
+  transform: translateY(-2px);
+}
+
+/* =============================Checkout ==================== */
+.container-checkout {
+  display: grid;
+  margin: 30px auto;
+  grid-template-columns: 1.3fr 1fr;
+  max-width: 1200px;
+
+  border-radius: 5px;
+  box-shadow: 1px 2px 4px rgba(0, 0, 0, 0.3);
+}
+/* Left */
+.payments {
+  padding: 50px;
+}
+
+.form-checkout {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.container-shipping {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.container-address {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.container-contact {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.container-title {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.payments h2 {
+  font-family: "Courier New", monospace;
+  font-size: 14px;
+  margin: 0;
+}
+
+.payments p {
+  font-family: "Courier New", monospace;
+  font-size: 12px;
+  margin: 0;
+}
+
+.form-checkout input {
+  border-radius: 2px;
+  font-family: "Courier New", monospace;
+  border: 1px solid var(--black);
+}
+
+.form-checkout input:focus {
+  outline: none;
+}
+
+.container-contact {
+  display: flex;
+  gap: 10px;
+  width: 100%;
+}
+.input-group {
+  flex: 1;
+  display: flex;
+  gap: 5px;
+  position: relative;
+}
+
+.container-contact .input-group input {
+  width: 100%;
+}
+
+.input-group input {
+  font-size: 14px;
+  padding: 12px 10px;
+}
+
+.input-group label {
+  display: none;
+  position: absolute;
+  font-family: "Courier New", monospace;
+  left: 10px;
+  top: 8px;
+}
+
+.input-group input:not(:placeholder-shown) {
+  padding-top: 20px;
+  padding-bottom: 5px;
+}
+
+.input-group input:not(:placeholder-shown) + label {
+  display: block;
+  font-size: 10px;
+  color: rgba(129, 127, 127);
+  animation: slideInUpAnimation 0.3s ease-in;
+}
+
+.select-group {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  flex: 1;
+}
+
+.select-group span {
+  position: absolute;
+  top: 8px;
+  left: 10px;
+  font-family: "Courier New", monospace;
+  font-size: 10px;
+  color: rgba(129, 127, 127);
+}
+
+.select-group select {
+  border-radius: 2px;
+  padding: 20px 5px 7px;
+  font-family: "Courier New", monospace;
+  font-size: 12px;
+}
+
+.container-name,
+.container-zipcode {
+  display: flex;
+  gap: 10px;
+}
+
+.container-name input,
+.container-zipcode input,
+.commune input,
+.address input,
+.address-detail input,
+.phone input {
+  width: 100%;
+}
+
+.save-info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: "Courier New", monospace;
+  font-size: 12px;
+}
+
+.save-info input {
+  width: auto;
+  height: 20px;
+  cursor: pointer;
+}
+
+.container-shipping-method,
+.container-payment-method {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.container-express {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  border: 1px solid var(--black);
+  border-radius: 2px;
+  background-color: rgb(240, 240, 240);
+}
+
+.container-express p {
+  font-family: "Courier New", monospace;
+  font-size: 12px;
+  margin: 0;
+}
+
+#shipping-cost {
+  font-weight: 600;
+  font-family: "Courier New", monospace;
+  font-size: 14px;
+  margin: 0;
+}
+
+/* payment */
+.payment-option {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: "Courier New", monospace;
+  font-size: 12px;
+  background-color: #f0f0f0;
+  border-radius: 2px;
+  padding: 20px;
+  height: 20px;
+}
+
+.payment-option.selected {
+  border: 1px solid black !important;
+}
+
+.payment-option:hover {
+  background: #f5f5f5;
+}
+
+.payment-option input {
+  margin: 0;
+  flex: none;
+}
+
+.payment-option label {
+  margin: 0;
+  flex: 1;
+}
+
+.payment-option img {
+  height: 20px;
+  margin: 0;
+  flex: none;
+}
+
+.terms-agreement {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: "Courier New", monospace;
+  font-size: 12px;
+}
+
+/* btn */
+.btn-group {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 20px;
+}
+
+.btn-group a {
+  flex: 1;
+  text-decoration: none;
+  color: var(--white);
+  background-color: var(--black);
+  padding: 10px 30px;
+  font-family: "Courier New", monospace;
+  font-size: 14px;
+  text-align: center;
+}
+
+.btn-group button {
+  flex: 1;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 10px 30px;
+  background-color: var(--red);
+  color: var(--white);
+  border: none;
+  cursor: pointer;
+  font-family: "Courier New", monospace;
+}
+
+.btn-group a:hover,
+.btn-group button:hover {
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+  transform: translateY(-2px);
+}
+
+/* Right */
+.products-summary {
+  flex: 1;
+  border-left: 1px solid var(--black);
+  padding: 50px 20px;
+  background-color: rgb(240, 240, 240);
+}
+
+.product-item-img {
+  position: relative;
+  flex: none;
+}
+
+.product-item-img img {
+  width: 80px;
+  height: auto;
+  padding: 5px 12px 5px 10px;
+}
+.product-item-img span {
+  position: absolute;
+  top: -1px;
+  right: 1px;
+  font-family: "Courier New", monospace;
+  font-size: 12px;
+  background-color: var(--black);
+  color: var(--white);
+  padding: 4px 2px;
+}
+
+.product-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 0;
+}
+
+.product-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.product-info h3,
+.product-info p,
+.product-item span {
+  font-family: "Courier New", monospace;
+  margin: 0;
+}
+.product-info h3 {
+  font-size: 14px;
+}
+.product-info p,
+.product-item span {
+  font-size: 12px;
+}
+
+.product-item span {
+  font-weight: 600;
+}
+
+.summary-totals {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.summary-totals div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.summary-totals span,
+.summary-totals p {
+  font-family: "Courier New", monospace;
+  font-size: 14px;
+  margin: 0;
+  font-weight: 600;
+}
+
+.grand-total p,
+.grand-total span {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--red);
+}
+
+/* =============================Order ==================== */
+.container-orders {
+  display: flex;
+  flex-direction: column;
+  height: 600px;
+  max-width: 900px;
+  margin: 80px auto;
+  border: 1px dotted var(--black);
+  background-color: var(--white);
+  font-family: "Courier New", monospace;
+  box-shadow: 5px 5px 0px rgba(0, 0, 0, 0.1);
+}
+
+/* HEADER (Tiêu đề) */
+.container-orders h1 {
+  flex: none;
+  font-size: 18px;
+  padding: 15px;
+  margin: 0;
+  text-align: center;
+  border-bottom: 1px dotted var(--black);
+  background: var(--bg-gray);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.order-summary {
+  flex: none;
+  text-align: center;
+  padding: 10px;
+  border-bottom: 1px dotted var(--black);
+  font-size: 13px;
+}
+
+.status-count {
+  margin-top: 8px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+}
+
+.status-count span {
+  padding: 2px 6px;
+  border-radius: 4px;
+  border: 1px solid #ddd;
+  font-size: 11px;
+}
+
+/* TABS (Thanh chuyển đổi) */
+.tabs {
+  flex: none;
+  display: flex;
+  border-bottom: 1px dotted var(--black);
+}
+
+.tab-btn {
+  flex: 1;
+  padding: 12px;
+  background: var(--white);
+  border: none;
+  border-right: 1px dotted var(--black);
+  font-family: "Courier New", monospace;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.tab-btn:last-child {
+  border-right: none;
+}
+
+.tab-btn:hover {
+  background-color: #f0f0f0;
+}
+
+.tab-btn.active {
+  background-color: var(--black);
+  color: var(--white);
+}
+
+.tab-content {
+  display: none;
+}
+
+.tab-content.active {
+  display: block;
+  flex: 1; /* Chiếm toàn bộ khoảng trống còn lại */
+  overflow-y: auto; /* Tạo thanh cuộn dọc nếu dài */
+  padding: 0;
+  background-color: var(--white);
+}
+
+/* Scrollbar đẹp hơn */
+.tab-content.active::-webkit-scrollbar {
+  width: 6px;
+}
+.tab-content.active::-webkit-scrollbar-thumb {
+  background-color: #ccc;
+  border-radius: 3px;
+}
+
+/* TỪNG ĐƠN HÀNG (Item) */
+.order-item {
+  padding: 15px 20px;
+  border-bottom: 1px dotted var(--black);
+  transition: background 0.2s;
+}
+
+.order-item:hover {
+  background-color: #fafafa;
+}
+
+.order-item:last-child {
+  border-bottom: none;
+}
+
+.order-item h3 {
+  margin: 0 0 5px 0;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.order-item p {
+  margin: 4px 0;
+  font-size: 13px;
+  color: #333;
+}
+
+/* BADGE TRẠNG THÁI */
+.status-badge {
+  display: inline-block;
+  padding: 3px 8px;
+  border-radius: 4px;
+  font-size: 11px;
+  font-weight: bold;
+  text-transform: uppercase;
+  margin-left: 5px;
+}
+
+/* Màu sắc status */
+.pending {
+  background: #fff3cd;
+  color: #856404;
+}
+.processing {
+  background: #d1ecf1;
+  color: #0c5460;
+}
+.shipped {
+  background: #d4edda;
+  color: #155724;
+}
+.delivered {
+  background: #28a745;
+  color: #fff;
+}
+.paid {
+  background: #17a2b8;
+  color: #fff;
+}
+
+.pending_payment {
+  background: #e96e10;
+  color: #ffffff;
+}
+
+.cancelled {
+  background: #f8d7da;
+  color: #721c24;
+}
+
+/* FOOTER ACTION (Nút quay lại) */
+.order-action {
+  flex: none; /* Cố định dưới đáy */
+  padding: 15px;
+  border-top: 1px dotted var(--black);
+  background-color: var(--bg-gray);
+  display: flex;
+  justify-content: flex-end; /* Đẩy nút sang phải */
+}
+
+.btn-back {
+  display: inline-block;
+  padding: 10px 25px;
+  background-color: var(--black);
+  color: var(--white);
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 13px;
+  transition: transform 0.2s;
+}
+
+.btn-back:hover {
+  transform: translateY(-2px);
+  box-shadow: 2px 2px 0px rgba(0, 0, 0, 0.2);
+}
+
+/* Thông báo trống */
+.text-center {
+  text-align: center;
+  padding: 40px;
+  color: #777;
+  font-style: italic;
+}
+/* =============================About ==================== */
+.about {
+  position: relative;
+  width: 100%;
+  margin: 20px auto;
+  overflow: hidden;
+}
+
+.about-image {
+  width: 100%;
+  display: block;
+}
+
+.about-image img {
+  width: 100%;
+  height: auto;
+  display: block;
+  filter: brightness(50%);
+}
+
+.about-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 80%;
+  max-width: 1000px;
+  padding: 20px;
+  text-align: center;
+  border-radius: 8px;
+  color: var(--white);
+  z-index: 1;
+}
+
+.about-text h2 {
+  font-size: 42px;
+  margin-bottom: 35px;
+  color: var(--white);
+}
+
+.about-text p {
+  font-size: 1em;
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+
+.about-text .btn-learn-more {
+  background-color: #007bff;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1em;
+  transition: background-color 0.3s ease;
+}
+
+.about-text .btn-learn-more:hover {
+  background-color: #0056b3;
+}
+
+/* -------------------- */
+/* Tùy chỉnh vị trí và kích thước nếu muốn nó không ở giữa */
+/* Ví dụ: Đặt ở dưới cùng bên trái */
+/*
+.about-text {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  top: auto;
+  right: auto;
+  transform: none; 
+  width: 40%;
+  max-width: none;
+}
+*/
+
+/* =============================Footer ==================== */
+
+.footer {
+  background-color: var(--black);
+  color: var(--white);
+  text-align: center;
+  padding: 40px 20px 5px 20px;
+  margin-top: 50px;
+}
+
+.footer .logo-footer img {
+  height: 70px;
+}
+
+.footer .logo-footer p {
+  margin: 10px 0 20px 0;
+  font-family: "Courier New", monospace;
+  font-size: 12px;
+}
+
+.footer .social-footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+  margin-top: 10px;
+}
+
+.footer .link {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.footer .link a {
+  font-family: "Courier New", monospace;
+  font-size: 14px;
+  color: var(--white);
+}
+
+.footer .link a:hover {
+  background-color: var(--red);
+}
+
+.footer .social-footer a {
+  text-decoration: none;
+  color: var(--white);
+  font-size: 24px;
+  flex: none;
+  margin-top: 10px;
+}
+
+.social-footer a:hover {
+  color: var(--red);
+}
+
+.footer p {
+  margin-top: 30px;
+  font-family: "Courier New", monospace;
+  font-size: 12px;
+  bottom: 0;
+}
+
+/* ================================Transition ==================== */
+
+@keyframes fadeInAnimation {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeOutAnimation {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+/* trên xuống */
+@keyframes slideInDownAnimation {
+  from {
+    transform: translateY(-20%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+/* dưới lên */
+@keyframes slideInUpAnimation {
+  from {
+    transform: translateY(20%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+/* từ trái sang phải */
+@keyframes slideInLeftAnimation {
+  from {
+    transform: translateX(-50%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+/* từ phải sang trái */
+@keyframes slideInRightAnimation {
+  from {
+    transform: translateX(50%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+/* ============== Responsive ============== */
+/* @media (max-width: 1100px) {
+  .navbar .catalog a {
+    font-size: 20px;
+  }
+
+  .intro .intro-text h1 {
+    font-size: 60px;
+  }
+
+  .featured .grid {
+    grid-template-columns: repeat(1, 1fr);
+  }
+
+  .container-signup {
+    flex-direction: column;
+    max-width: 500px;
+  }
+
+  .img-container {
+    display: none;
+  }
+  .form-container {
+    width: 100%;
+  }
+
+  .form-container {
+    height: auto;
+  }
+} */

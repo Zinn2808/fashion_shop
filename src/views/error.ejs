@@ -1,0 +1,43 @@
+<!-- src/views/error.ejs -->
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lỗi - <%= title || 'Fashion Shop' %></title>
+    <link rel="stylesheet" href="/css/style.css" />
+    <style>
+      .error-container {
+        text-align: center;
+        padding: 50px;
+        font-family: Arial, sans-serif;
+      }
+      .error-code {
+        font-size: 72px;
+        color: #e74c3c;
+        margin: 0;
+      }
+      .error-message {
+        font-size: 24px;
+        color: #555;
+        margin: 20px 0;
+      }
+      .btn-home {
+        display: inline-block;
+        padding: 12px 24px;
+        background: #3498db;
+        color: white;
+        text-decoration: none;
+        border-radius: 5px;
+        margin-top: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="error-container">
+      <h1 class="error-code">500</h1>
+      <p class="error-message"><%= message || 'Đã có lỗi xảy ra. Vui lòng thử lại sau.' %></p>
+      <a href="/" class="btn-home">Về trang chủ</a>
+    </div>
+  </body>
+</html>

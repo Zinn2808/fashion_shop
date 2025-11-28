@@ -1,0 +1,30 @@
+<div class="container-admin-users">
+  <div class="title-admin-users">
+    <h1>Manage Users</h1>
+  </div>
+  <div class="table-responsive">
+    <table class="table">
+      <tr>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Role</th>
+        <th>Delete</th>
+      </tr>
+      <% users.forEach(u => { %>
+      <tr>
+        <td><%= u.name %></td>
+        <td><%= u.email %></td>
+        <td><%= u.role %></td>
+        <td>
+          <% if (u.role !== 'admin') { %>
+          <form action="/admin/users/<%= u._id %>/delete" method="post" onsubmit="return confirm('Delete this user?');">
+            <button type="submit" class="btn-delete">Delete</button>
+          </form>
+          <% } %>
+        </td>
+      </tr>
+      <% }) %>
+    </table>
+  </div>
+  <button class="back-button" onclick="window.location.href='/admin'">Back to Admin Dashboard</button>
+</div>

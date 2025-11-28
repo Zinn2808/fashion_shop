@@ -1,0 +1,33 @@
+<div class="title-All-product">
+  <h1>All Products</h1>
+  <p>Discover our wide range of products tailored for your style.</p>
+</div>
+
+<form method="get" class="filters">
+  <div class="search-bar">
+    <i class="ti-search"></i>
+    <input type="text" name="q" placeholder="Search products..." value="<%= query.q || '' %>" />
+  </div>
+
+  <div class="categories">
+    <% const cats = ["All", "Jackets", "Shirts", "Pants", "Sweaters", "Hats"]; %> <% cats.forEach(c => { %>
+    <button type="submit" name="category" value="<%= c === 'All' ? '' : c %>" class="cat-btn <%= query.category === c ? 'active' : '' %>">
+      <%= c %>
+    </button>
+    <% }) %>
+  </div>
+</form>
+
+<div class="grid">
+  <% products.forEach(p => { %>
+  <div class="card">
+    <a href="/products/<%= p.slug %>" class="">
+      <img src="<%= p.images?.[0] || '/images/products/no-image.jpg' %>" alt="<%= p.name %>" />
+    </a>
+    <div class="container">
+      <h3><a href="/products/<%= p.slug %>"><%= p.name %></a></h3>
+      <p><%= p.price.toLocaleString('vi-VN') %> VNĐ</p>
+    </div>
+  </div>
+  <% }) %>
+</div>

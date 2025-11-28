@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 261.9 84.94">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #ed1c24;
+      }
+
+      .cls-2 {
+        fill: #fff;
+        font-family: Futura-MediumItalic, Futura;
+        font-size: 72px;
+        font-style: italic;
+        font-weight: 500;
+      }
+
+      .cls-3 {
+        letter-spacing: -.02em;
+      }
+
+      .cls-4 {
+        letter-spacing: -.04em;
+      }
+
+      .cls-5 {
+        letter-spacing: -.01em;
+      }
+
+      .cls-6 {
+        letter-spacing: 0em;
+      }
+    </style>
+  </defs>
+  <rect class="cls-1" y="2.26" width="261.9" height="72.62"/>
+  <text class="cls-2" transform="translate(14.04 63.42)"><tspan class="cls-4" x="0" y="0">K</tspan><tspan class="cls-5" x="45.84" y="0">e</tspan><tspan x="85.36" y="0">vi</tspan><tspan class="cls-6" x="139.04" y="0">n</tspan><tspan class="cls-3" x="178.03" y="0">’</tspan><tspan x="198.95" y="0">s</tspan></text>
+</svg>

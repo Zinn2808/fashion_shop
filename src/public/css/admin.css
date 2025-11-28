@@ -1,0 +1,309 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* ======================================================Dashboard======================================================== */
+.container-dashboard {
+  display: flex;
+  flex-direction: column;
+  gap: 80px;
+  margin: 0 auto;
+  max-width: 1200px;
+  padding: 20px;
+  margin: 55px auto;
+  height: 500px;
+  border-radius: 5px;
+  box-shadow: 1px 2px 4px rgba(0, 0, 0, 0.3);
+  max-height: 800px;
+}
+.title-admin,
+.title-admin-products,
+.title-admin-orders,
+.title-admin-users {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: "Courier New", monospace;
+  color: var(--white);
+  background-color: var(--black);
+  padding: 10px 20px;
+  border-radius: 5px;
+  text-align: center;
+  height: 100px;
+  h1 {
+    margin: 0;
+    font-size: 36px;
+  }
+}
+
+.container-dashboard .grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  font-family: "Courier New", monospace;
+  font-size: 30px;
+  font-weight: 600;
+}
+.container-dashboard .grid strong {
+  margin-top: 10px;
+  font-size: 24px;
+}
+
+.container-dashboard nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 100px;
+  padding: 20px 0;
+  a {
+    flex: none;
+    text-decoration: none;
+    color: var(--white);
+    background-color: var(--red);
+    font-family: "Courier New", monospace;
+    font-size: 18px;
+    padding: 10px 20px;
+  }
+  a:hover {
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+    transform: translateY(-2px);
+  }
+}
+
+/* ======================================================Products======================================================== */
+.container-admin-products,
+.container-admin-orders,
+.container-admin-users {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 80px;
+  margin: 0 auto;
+  max-width: 1200px;
+  padding: 20px;
+  margin: 55px auto;
+  border-radius: 5px;
+  box-shadow: 1px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.form-add-product,
+.table-responsive {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 20px;
+  border: 1px solid var(--gray);
+  border-radius: 5px;
+  background-color: var(--light-gray);
+}
+
+.form-add-product form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.name-price,
+.stock-category,
+.colors-sizes {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  input {
+    flex: 1;
+  }
+}
+
+.form-add-product input {
+  padding: 12px 10px;
+  border: 1px solid var(--black);
+  border-radius: 2px;
+  font-size: 12px;
+  font-family: "Courier New", monospace;
+  outline: none;
+}
+
+.images-upload {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  font-family: "Courier New", monospace;
+  font-size: 14px;
+  label {
+    padding: 10px;
+    border-radius: 2px;
+    color: var(--white);
+    background-color: var(--black);
+    align-self: center;
+    cursor: pointer;
+    font-weight: 600;
+  }
+  label:active {
+    transform: translateY(1px);
+    opacity: 0.9;
+  }
+  span {
+    align-self: center;
+    padding: 5px 10px;
+  }
+}
+
+.badges {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 100px;
+  font-family: "Courier New", monospace;
+  font-size: 14px;
+  margin-left: 340px;
+  label {
+    gap: 5px;
+    display: flex;
+    align-items: center;
+    padding: 5px 10px;
+    user-select: none;
+    cursor: pointer;
+    input[type="checkbox"] {
+      display: none;
+    }
+  }
+  label:has(input[type="checkbox"]:checked) {
+    font-weight: 600;
+    color: var(--white);
+    background-color: var(--red);
+    padding: 5px 10px;
+  }
+  label:not(:has(input:checked)):hover {
+    background-color: var(--red);
+    color: var(--white);
+  }
+}
+
+.form-add-product button {
+  padding: 12px 10px;
+  border: none;
+  border-radius: 2px;
+  background-color: var(--red);
+  color: var(--white);
+  font-size: 16px;
+  font-family: "Courier New", monospace;
+  cursor: pointer;
+  margin-top: 10px;
+  font-weight: 600;
+}
+.form-add-product button:hover,
+.form-add-product .cancel-button:hover,
+.back-button:hover {
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+  transform: translateY(-2px);
+}
+
+.form-add-product .cancel-button,
+.back-button {
+  padding: 12px 20px;
+  border: none;
+  border-radius: 2px;
+  background-color: var(--black);
+  color: var(--white);
+  font-size: 16px;
+  font-family: "Courier New", monospace;
+  text-decoration: none;
+  text-align: center;
+  height: 45px;
+}
+
+/* =========Table-responsive=========== */
+
+.table-responsive {
+  overflow-x: auto;
+  font-family: "Courier New", monospace;
+  background-color: rgb(240, 240, 240);
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table th,
+.table td {
+  padding: 12px 15px;
+  border: 1px solid var(--gray);
+  text-align: left;
+}
+
+.table th {
+  background-color: var(--black);
+  color: var(--white);
+}
+
+.table .btn-edit,
+.table .btn-delete,
+.table .btn-save,
+.back-button {
+  padding: 8px 12px;
+  border: none;
+  border-radius: 2px;
+  font-family: "Courier New", monospace;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.table .btn-edit:hover,
+.table .btn-delete:hover,
+.table .btn-save:hover {
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+  transform: translateY(-2px);
+}
+
+.table .btn-edit {
+  background-color: var(--black);
+  color: var(--white);
+}
+.table .btn-delete,
+.table .btn-save {
+  background-color: var(--red);
+  color: var(--white);
+}
+
+.table .status-select {
+  padding: 6px 5px;
+  border: 1px solid var(--black);
+  border-radius: 2px;
+  font-family: "Courier New", monospace;
+  cursor: pointer;
+}
+
+.table .status-form {
+  display: flex;
+  justify-content: flex-start;
+  gap: 20px;
+  align-items: center;
+}
+.table .status-select {
+  flex: 0.6;
+}
+.table .btn-save {
+  flex: 0.4;
+}
+.table .btn-primary {
+  padding: 8px 12px;
+  border: none;
+  border-radius: 2px;
+  background-color: var(--red);
+  color: var(--white);
+  font-family: "Courier New", monospace;
+  cursor: pointer;
+  font-weight: 600;
+}
+.table .btn-primary:hover {
+  box-shadow: 0 2px 4px rgba(0, 0, 0.5);
+  transform: translateY(-2px);
+}
+
+/* ======================================================Manager Order======================================================== */

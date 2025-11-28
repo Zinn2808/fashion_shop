@@ -1,0 +1,179 @@
+<!-- src/views/orders.ejs -->
+<div class="container-orders">
+  <h1>Đơn hàng của tôi</h1>
+
+  <% if (orders.length === 0) { %>
+  <p class="text-center">Bạn chưa có đơn hàng nào.</p>
+  <% } else { %>
+  <div class="order-summary">
+    <p>Bạn có <strong><%= orders.length %></strong> đơn hàng</p>
+    <div class="status-count">
+      <span class="pending"><%= orders.filter(o => o.status === "pending").length %> Chờ xác nhận</span>
+      <span class="processing"><%= orders.filter(o => o.status === "processing").length %> Đang xử lý</span>
+      <span class="shipped"><%= orders.filter(o => o.status === "shipped").length %> Đang giao</span>
+      <span class="delivered"><%= orders.filter(o => o.status === "delivered").length %> Đã giao</span>
+      <span class="paid"><%= orders.filter(o => o.status === "paid").length %> Đã thanh toán</span>
+      <span class="cancelled"><%= orders.filter(o => o.status === "cancelled").length %> Đã hủy</span>
+      <span class="pending_payment"><%= orders.filter(o => o.status === "pending_payment").length %> Chờ thanh toán</span>
+    </div>
+  </div>
+
+  <!-- TAB -->
+  <div class="tabs">
+    <button class="tab-btn active" data-tab="unpaid">Chưa thanh toán</button>
+    <button class="tab-btn" data-tab="paid">Đã thanh toán / Đã giao</button>
+  </div>
+
+  <!-- TAB CHƯA THANH TOÁN -->
+  <div id="unpaid" class="tab-content active">
+    <% orders.filter(o => !["paid", "delivered", "cancelled"].includes(o.status)).forEach(order => { %>
+    <div class="order-item">
+      <h3>#<%= order._id.toString().slice(-8) %></h3>
+      <p>Ngày đặt: <%= new Date(order.createdAt).toLocaleDateString('vi-VN') %></p>
+      <p>Tổng tiền: <strong><%= order.total.toLocaleString() %> ₫</strong></p>
+      <p>
+        Trạng thái:
+        <span id="order-status-<%= order._id %>" class="status-badge <%= order.status %>">
+          <%= { pending: "Chờ xác nhận", processing: "Đang xử lý", shipped: "Đang giao", pending_payment: "Chờ thanh toán" }[order.status] ||
+          order.status %>
+        </span>
+      </p>
+    </div>
+    <% }) %>
+  </div>
+
+  <!-- TAB ĐÃ THANH TOÁN / ĐÃ GIAO -->
+  <div id="paid" class="tab-content">
+    <% orders.filter(o => ["paid", "delivered", "cancelled"].includes(o.status)).forEach(order => { %>
+    <div class="order-item">
+      <h3>#<%= order._id.toString().slice(-8) %></h3>
+      <p>Ngày đặt: <%= new Date(order.createdAt).toLocaleDateString('vi-VN') %></p>
+      <p>Tổng tiền: <strong><%= order.total.toLocaleString() %> ₫</strong></p>
+      <p>
+        Trạng thái:
+        <span id="order-status-<%= order._id %>" class="status-badge <%= order.status %>">
+          <%= order.status === "paid" ? "Đã thanh toán" : order.status === "delivered" ? "Đã giao hàng" : "Đã hủy" %>
+        </span>
+      </p>
+    </div>
+    <% }) %>
+  </div>
+
+  <div class="order-action">
+    <a href="/products" class="btn-back">Tiếp tục mua sắm</a>
+  </div>
+  <% } %>
+</div>
+
+<style>
+  .order-summary {
+    text-align: center;
+    padding: 15px;
+    border-bottom: 1px dotted #000;
+  }
+
+  .status-count {
+    margin-top: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    justify-content: center;
+  }
+
+  .status-count span {
+    font-size: 13px;
+    padding: 4px 8px;
+    border-radius: 4px;
+  }
+
+  .tabs {
+    display: flex;
+    border-bottom: 1px solid #000;
+  }
+
+  .tab-btn {
+    padding: 10px 20px;
+    background: none;
+    border: none;
+    font-family: "Courier New", monospace;
+    cursor: pointer;
+    font-weight: bold;
+  }
+
+  .tab-btn.active {
+    border-bottom: 3px solid #000;
+  }
+
+  .tab-content {
+    display: none;
+  }
+
+  .tab-content.active {
+    display: block;
+  }
+
+  .order-item {
+    padding: 15px;
+    border-bottom: 1px dotted #ccc;
+  }
+
+  .order-item h3 {
+    margin: 0 0 8px 0;
+    font-size: 16px;
+  }
+
+  .status-badge {
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: bold;
+  }
+
+  .pending {
+    background: #fff3cd;
+    color: #856404;
+  }
+  .processing {
+    background: #d1ecf1;
+    color: #0c5460;
+  }
+  .shipped {
+    background: #d4edda;
+    color: #155724;
+  }
+  .delivered {
+    background: #c3e6cb;
+    color: #155724;
+  }
+  .cancelled {
+    background: #f8d7da;
+    color: #721c24;
+  }
+  .paid {
+    background: #d1ecf1;
+    color: #0c5460;
+  }
+
+  .pending_payment {
+    background: #e96e10;
+    color: #ffffff;
+  }
+
+  .order-action {
+    text-align: center;
+    margin-top: 20px;
+  }
+</style>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    document.querySelectorAll(".tab-btn").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        document.querySelectorAll(".tab-btn").forEach((b) => b.classList.remove("active"));
+        document.querySelectorAll(".tab-content").forEach((c) => c.classList.remove("active"));
+        btn.classList.add("active");
+        document.getElementById(btn.dataset.tab).classList.add("active");
+      });
+    });
+  });
+</script>

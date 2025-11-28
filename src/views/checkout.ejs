@@ -1,0 +1,186 @@
+<div class="container-checkout">
+  <!-- LEFT: FORM -->
+  <div class="payments">
+    <form action="/orders/checkout" method="post" class="form-checkout" id="checkoutForm">
+      <!-- Contact -->
+      <div class="container-contact">
+        <h2>Contact</h2>
+        <div class="input-group">
+          <input type="email" id="email" name="email" placeholder="Email" required />
+          <label for="email">Email</label>
+        </div>
+      </div>
+
+      <!-- Shipping Address -->
+      <div class="container-shipping">
+        <div class="container-title">
+          <h2>Shipping Address</h2>
+          <p>It will also be used as the billing address for this order.</p>
+        </div>
+
+        <div class="container-address">
+          <div class="select-group">
+            <span class="section-title">Nation/Area</span>
+            <select name="Nation" id="Nation" required>
+              <option value="Viet Nam">Vietnam</option>
+            </select>
+          </div>
+
+          <div class="container-name">
+            <div class="input-group">
+              <input type="text" id="first-name" name="firstName" placeholder="First Name" required />
+              <label for="first-name">First Name</label>
+            </div>
+            <div class="input-group">
+              <input type="text" id="last-name" name="lastName" placeholder="Last Name" required />
+              <label for="last-name">Last Name</label>
+            </div>
+          </div>
+
+          <div class="container-zipcode">
+            <div class="input-group">
+              <input type="text" id="zip-code" name="zipCode" placeholder="Zip Code" required />
+              <label for="zip-code">Zip Code</label>
+            </div>
+            <div class="select-group">
+              <span class="section-title">City/Province</span>
+              <select name="city" id="city" required>
+                <option value="">-- Chọn tỉnh/thành --</option>
+                <option value="Hà Nội">Hà Nội</option>
+                <option value="Hồ Chí Minh">Hồ Chí Minh</option>
+                <option value="Đà Nẵng">Đà Nẵng</option>
+                <option value="Other">Tỉnh/thành khác</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="commune">
+            <div class="input-group">
+              <input type="text" id="commune" name="commune" placeholder="Phường/Xã" required />
+              <label for="commune">Phường/Xã</label>
+            </div>
+          </div>
+
+          <div class="address">
+            <div class="input-group">
+              <input type="text" id="address" name="address" placeholder="Đường, số nhà" required />
+              <label for="address">Đường, số nhà</label>
+            </div>
+          </div>
+
+          <div class="address-detail">
+            <div class="input-group">
+              <input type="text" id="address-detail" name="addressDetail" placeholder="Chung cư, tầng, phòng..." />
+              <label for="address-detail">Chung cư, tầng, phòng...</label>
+            </div>
+          </div>
+
+          <div class="phone">
+            <div class="input-group">
+              <input type="tel" id="phone" name="phone" placeholder="Số điện thoại" required />
+              <label for="phone">Số điện thoại</label>
+            </div>
+          </div>
+        </div>
+
+        <!-- Shipping Method Info -->
+        <div class="container-shipping-method">
+          <h2>Phí vận chuyển</h2>
+          <div class="container-express">
+            <p id="Express-Delivery-Info" style="display: none">Giao nhanh: 3-5 ngày</p>
+            <p id="Standard-Shipping-Info" style="display: none">Giao thường: 5-7 ngày</p>
+            <p id="shipping-cost">Đang tính...</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- PAYMENT METHOD -->
+      <div class="container-payment-method">
+        <h2>Phương thức thanh toán</h2>
+
+        <!-- PAYPAL
+        <div class="payment-method">
+          <div class="radio-option payment-option" data-method="paypal">
+            <input type="radio" id="paypal" name="paymentMethod" value="PAYPAL" />
+            <label for="paypal">Thanh toán bằng PayPal</label>
+            <img src="/images/card/PayPal.svg" alt="PayPal" />
+          </div>
+        </div> -->
+
+        <!-- MOMO -->
+        <div class="payment-method">
+          <div class="radio-option payment-option" data-method="momo">
+            <input type="radio" id="momo" name="paymentMethod" value="MOMO" />
+            <label for="momo">Thanh toán MoMo</label>
+            <img src="/images/card/momo.png" alt="MoMo" style="height: 26px; margin-left: 10px" />
+          </div>
+        </div>
+
+        <!-- COD -->
+        <div class="payment-method">
+          <div class="radio-option payment-option selected" data-method="cod">
+            <input type="radio" id="cod" name="paymentMethod" value="COD" checked required />
+            <label for="cod">Thanh toán khi nhận hàng (COD)</label>
+          </div>
+        </div>
+      </div>
+
+      <!-- NÚT MOMO -->
+      <div id="momo-button-container" style="display: none; margin: 20px 0; text-align: center">
+        <button id="momo-pay-btn" class="btn btn-danger">Thanh toán bằng MoMo</button>
+      </div>
+
+      <!-- Terms -->
+      <div class="terms-agreement">
+        <input type="checkbox" id="agree-terms" name="agreeTerms" required />
+        <label for="agree-terms">
+          Tôi đồng ý với <a href="/terms" target="_blank">Điều khoản sử dụng</a> và <a href="/privacy" target="_blank">Chính sách bảo mật</a>.
+        </label>
+      </div>
+
+      <!-- Buttons -->
+      <div class="btn-group">
+        <a href="/cart" class="btn btn-back-to-cart">Quay lại giỏ hàng</a>
+        <button type="submit" id="btn-place-order" class="btn btn-checkout">Đặt hàng</button>
+      </div>
+    </form>
+  </div>
+
+  <!-- RIGHT: SUMMARY -->
+  <div class="products-summary">
+    <% if (cart && cart.length > 0) { %> <% cart.forEach(function(item) { %>
+    <div class="product-item">
+      <div class="product-item-img">
+        <img src="<%= item.image %>" alt="<%= item.name %>" onerror="this.src='/images/placeholder.jpg'" />
+        <span class="qty-badge">x<%= item.qty %></span>
+      </div>
+      <div class="product-info">
+        <h3><%= item.name %></h3>
+        <% if (item.size) { %>
+        <p>Size: <%= item.size %></p>
+        <% } %> <% if (item.color) { %>
+        <p>Màu: <%= item.color %></p>
+        <% } %>
+      </div>
+      <span class="price"><%= (item.price * item.qty).toLocaleString('vi-VN') %> VNĐ</span>
+    </div>
+    <% }); %> <% } else { %>
+    <p>Giỏ hàng trống</p>
+    <% } %>
+
+    <div class="summary-totals">
+      <div class="subtotal">
+        <span>Tạm tính</span>
+        <p id="subtotal-show"><%= Number(subtotal || 0).toLocaleString('vi-VN') %> VNĐ</p>
+      </div>
+      <div class="shipping-fee">
+        <span>Phí vận chuyển</span>
+        <p id="shipping-fee-show">0 VNĐ</p>
+      </div>
+      <div class="grand-total">
+        <span>Tổng cộng</span>
+        <p id="grand-total-show"><%= Number(subtotal || 0).toLocaleString('vi-VN') %> VNĐ</p>
+      </div>
+    </div>
+  </div>
+</div>

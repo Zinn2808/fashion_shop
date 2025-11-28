@@ -1,0 +1,35 @@
+<header class="header">
+  <div class="navbar">
+    <a href="/" class="logo-link">
+      <img src="/images/logoKevin.svg" alt="logo Kevin" class="logo" />
+    </a>
+    <div class="catalog">
+      <a href="/#intro">Home</a>
+      <a href="/products">Products</a>
+      <a href="/#about-us">About</a>
+    </div>
+    <div class="icons">
+      <div class="icons">
+        <% if (user && user.role === 'admin') { %>
+        <a style="font-size: 20px; color: var(--red)" href="/admin">Admin</a>
+        <form action="/auth/logout" method="post" style="display: flex">
+          <button style="padding: 5px 10px; background: transparent; border: none; cursor: pointer" title="Logout">
+            <i class="ti-power-off"></i>
+          </button>
+        </form>
+        <% } else { %>
+        <a href="/cart"><i class="ti-shopping-cart"></i></a>
+        <% if (user) { %>
+        <a href="/orders"><i class="ti-package"></i></a>
+        <form action="/auth/logout" method="post" style="display: flex">
+          <button style="padding: 5px 10px; background: transparent; border: none; cursor: pointer" title="Logout">
+            <i class="ti-power-off"></i>
+          </button>
+        </form>
+        <% } else { %>
+        <a href="/auth/register"><i class="ti-user"></i></a>
+        <% } %> <% } %>
+      </div>
+    </div>
+  </div>
+</header>

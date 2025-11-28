@@ -1,0 +1,54 @@
+<div class="container-cart">
+  <h1>Cart</h1>
+  <% if (!cart || cart.length === 0) { %>
+  <div class="cart-empty">
+    <p>No products in the cart</p>
+    <div class="cart-empty-actions">
+      <button class="btn">
+        <a class="btn" href="/products">Shopping</a>
+      </button>
+      <% if (!user) { %>
+      <button class="btn-alt">
+        <a class="btn-alt" href="/auth/login">Login</a>
+      </button>
+      <% } %>
+    </div>
+  </div>
+  <% } else { %>
+  <div class="count-items">
+    <p><%= cart.length %> items in your cart</p>
+    <span>Total: <%= total.toLocaleString('vi-VN') %> VNĐ</span>
+  </div>
+  <div class="cart-items">
+    <% cart.forEach(i => { %>
+    <div class="cart-item">
+      <div class="item-image">
+        <img src="<%= i.image %>" alt="<%= i.name %>" />
+      </div>
+      <div class="item-details">
+        <div class="item-details-info">
+          <p class="item-name"><%= i.name %></p>
+          <p class="item-color">color: <%= i.color %></p>
+          <p class="item-size">size: <%= i.size %></p>
+          <p class="item-quantity">x <%= i.qty %></p>
+        </div>
+        <form action="/cart/remove" method="post">
+          <input type="hidden" name="productId" value="<%= i.productId %>" />
+          <input type="hidden" name="color" value="<%= i.color %>" />
+          <input type="hidden" name="size" value="<%= i.size %>" />
+          <button class="btn-remove" type="submit"><p>Remove</p></button>
+        </form>
+      </div>
+      <div class="item-price">
+        <p><%= (i.price * i.qty).toLocaleString('vi-VN') %> VNĐ</p>
+      </div>
+    </div>
+    <% }) %>
+  </div>
+
+  <div class="cart-actions">
+    <a class="btn-back" href="/products">Back to shop</a>
+    <a class="btn" href="/orders/checkout">Payment</a>
+  </div>
+  <% } %>
+</div>

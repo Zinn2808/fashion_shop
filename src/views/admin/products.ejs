@@ -1,0 +1,99 @@
+<div class="container-admin-products">
+  <div class="title-admin-products">
+    <h1>Manage Products</h1>
+  </div>
+  <div class="form-add-product">
+    <form id="product-form" method="post" action="/admin/products" enctype="multipart/form-data">
+      <input type="hidden" name="productId" id="productId" />
+      <!-- dùng khi update -->
+
+      <div class="name-price">
+        <input name="name" id="name" placeholder="Name" required />
+        <input name="price" id="price" type="number" placeholder="Price" required />
+      </div>
+
+      <div class="stock-category">
+        <input name="stock" id="stock" type="number" placeholder="Stock" required />
+        <input name="category" id="category" placeholder="Category" required />
+      </div>
+
+      <div class="colors-sizes">
+        <input name="colors" id="colors" placeholder="Colors (comma separated)" required />
+        <input name="sizes" id="sizes" placeholder="Sizes (comma separated)" required />
+      </div>
+
+      <input class="description" name="description" id="description" placeholder="Description" required />
+
+      <!-- badges -->
+      <div class="badges">
+        <label><input type="checkbox" name="badges" value="featured" />Featured</label>
+        <label><input type="checkbox" name="badges" value="bestseller" />Bestseller</label>
+        <label><input type="checkbox" name="badges" value="brand" />Brand</label>
+      </div>
+
+      <!-- image upload -->
+      <input id="image" name="image" type="file" accept="image/*" hidden />
+      <div class="images-upload">
+        <span id="file-name">No file chosen</span>
+        <label for="image" class="custom-file-upload">Choose image</label>
+      </div>
+
+      <button id="submit-btn">Add Product</button>
+      <a class="cancel-button" href="/admin" id="cancel-edit" style="display: none">Cancel</a>
+    </form>
+  </div>
+
+  <!-- Bảng: hiển thị badges + actions -->
+  <div class="table-responsive">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Category</th>
+          <th>Price (VNĐ)</th>
+          <th>Stock</th>
+          <th>Colors</th>
+          <th>Sizes</th>
+          <th>Badges</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% products.forEach(p => { %>
+        <tr>
+          <td><%= p.name %></td>
+          <td><%= p.category %></td>
+          <td><%= p.price %></td>
+          <td><%= p.stock %></td>
+          <td><%= (p.colors||[]).join(', ') %></td>
+          <td><%= (p.sizes||[]).join(', ') %></td>
+          <td><%= (p.badges||[]).join(', ') %></td>
+          <td style="display: flex; gap: 8px">
+            <!-- Nút Edit: đổ dữ liệu lên form -->
+            <button
+              type="button"
+              class="btn-edit"
+              data-id="<%= p._id %>"
+              data-name="<%= p.name %>"
+              data-price="<%= p.price %>"
+              data-stock="<%= p.stock %>"
+              data-category="<%= p.category %>"
+              data-colors="<%= (p.colors||[]).join('|') %>"
+              data-sizes="<%= (p.sizes||[]).join('|') %>"
+              data-description="<%= p.description %>"
+              data-badges="<%= (p.badges||[]).join('|') %>"
+            >
+              Edit
+            </button>
+            <!-- Nút Delete: submit form POST -->
+            <form action="/admin/products/<%= p._id %>/delete" method="post" onsubmit="return confirm('Xóa sản phẩm này?');">
+              <button type="submit" class="btn-delete">Delete</button>
+            </form>
+          </td>
+        </tr>
+        <% }) %>
+      </tbody>
+    </table>
+  </div>
+  <button class="back-button" onclick="window.location.href='/admin'">Back to Admin Dashboard</button>
+</div>

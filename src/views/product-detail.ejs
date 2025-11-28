@@ -1,0 +1,97 @@
+<div class="container-product-detail">
+  <div class="img-product-detail">
+    <img
+      id="mainImage"
+      src="<%= product.imagesByColor?.get(product.colors?.[0]) || product.images?.[0] || '/images/products/no-image.jpg' %>"
+      alt="<%= product.name %>"
+      style="width: 300px"
+    />
+  </div>
+
+  <div class="info-product-detail">
+    <h1><%= product.name %></h1>
+    <p><%= product.description %></p>
+    <p class="money"><%= product.price.toLocaleString('vi-VN') %> VNĐ</p>
+
+    <div class="container-color-size">
+      <!-- Chọn màu -->
+      <% if (product.colors?.length) { %>
+      <div class="variant-container">
+        <div class="color-options">
+          <% product.colors.forEach((c, idx) => { const img = product.imagesByColor?.get(c) || product.images?.[0] || '/images/products/no-image.jpg';
+          %>
+          <button
+            type="button"
+            class="color-swatch <%= idx===0 ? 'active' : '' %>"
+            data-color="<%= c %>"
+            data-image="<%= img %>"
+            aria-pressed="<%= idx===0 ? 'true' : 'false' %>"
+            title="<%= c %>"
+          >
+            <%= c %>
+          </button>
+          <% }) %>
+        </div>
+      </div>
+      <% } %>
+
+      <!-- Chọn size -->
+      <% if (product.sizes?.length) { %>
+      <div class="variant-group">
+        <div class="size-options">
+          <% product.sizes.forEach((s, idx) => { %>
+          <label class="size-pill">
+            <input type="radio" name="__size_ui" value="<%= s %>" <%= idx===0?'checked':'' %> />
+            <span><%= s %></span>
+          </label>
+          <% }) %>
+        </div>
+      </div>
+      <% } %>
+    </div>
+
+    <div class="container-cart-back">
+      <form id="addToCartForm" action="/cart/add" method="post">
+        <input type="hidden" name="productId" value="<%= product._id %>" />
+        <!-- 2 hidden để post lên server -->
+        <input type="hidden" name="color" id="chosenColor" value="<%= product.colors?.[0] || '' %>" />
+        <input type="hidden" name="size" id="chosenSize" value="<%= product.sizes?.[0] || '' %>" />
+        <button>Add to cart</button>
+      </form>
+
+      <a href="/products">Back to products</a>
+    </div>
+  </div>
+</div>
+
+<script>
+  (function () {
+    const imgEl = document.getElementById("mainImage");
+    const colorBtns = document.querySelectorAll(".color-swatch");
+    const chosenColor = document.getElementById("chosenColor");
+
+    colorBtns.forEach((btn) => {
+      btn.addEventListener("click", () => {
+        colorBtns.forEach((b) => {
+          b.classList.remove("active");
+          b.setAttribute("aria-pressed", "false");
+        });
+        btn.classList.add("active");
+        btn.setAttribute("aria-pressed", "true");
+        const img = btn.dataset.image;
+        const color = btn.dataset.color;
+        if (img) imgEl.src = img;
+        chosenColor.value = color;
+      });
+    });
+
+    // đồng bộ size radio -> hidden
+    const sizeRadios = document.querySelectorAll('input[name="__size_ui"]');
+    const chosenSize = document.getElementById("chosenSize");
+    sizeRadios.forEach((r) => {
+      r.addEventListener("change", () => {
+        chosenSize.value = r.value;
+      });
+    });
+  })();
+</script>

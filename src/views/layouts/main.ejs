@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title><%= title || 'Fashion Shop' %></title>
+
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/admin.css" />
+    <link rel="icon" href="/images/favicon.svg" />
+    <link rel="stylesheet" href="/icon/themify-icons/themify-icons.css" />
+
+    <script src="/socket.io/socket.io.js" defer></script>
+  </head>
+  <body>
+    <%- include('../partials/_header') %>
+    <main class="container"><%- body %></main>
+    <%- include('../partials/_footer') %>
+
+    <script src="/js/app.js" defer></script>
+
+    <!-- CHỈ LOAD admin.js KHI LÀ TRANG ADMIN -->
+    <% if (typeof isAdmin !== 'undefined' && isAdmin) { %>
+    <script src="/js/admin.js" defer></script>
+    <% } %>
+  </body>
+</html>

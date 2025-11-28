@@ -1,0 +1,25 @@
+<div class="container-signup">
+  <div class="img-container">
+    <img src="/images/register.jpg" alt="Register-img" />
+    <div class="back">
+      <a href="/">Back to Home &#8594;</a>
+    </div>
+  </div>
+  <div class="form-container">
+    <h1>Create an account</h1>
+    <p>Already have an account? <a href="/auth/login">Login</a></p>
+    <form method="post" action="/auth/register">
+      <input type="text" name="name" placeholder="Name" required />
+      <input type="email" name="email" placeholder="Email" required />
+      <input type="password" name="password" placeholder="Password" required />
+      <!-- đồng ý chính sách -->
+      <div class="terms">
+        <input type="checkbox" name="terms" required />
+        <label for="terms">
+          I agree to the <a href="#">Terms of Service</a>
+        </label>
+      </div>
+      <button>Register</button>
+    </form>
+  </div>
+</div>

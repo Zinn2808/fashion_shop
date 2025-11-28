@@ -1,0 +1,86 @@
+<div class="intro" id="intro">
+  <img src="/images/intro.jpg" alt="" />
+  <div class="intro-text">
+    <h1>Kevin's</h1>
+    <p>Elevate your style with our exclusive fashion collections.</p>
+  </div>
+</div>
+<!-- Featured Section -->
+<div class="featured">
+  <div class="featured-text">
+    <h1>Featured</h1>
+    <p>Discover the latest trends in fashion and shop your favorite styles.</p>
+  </div>
+  <div class="grid">
+    <% featured.forEach(p => { %>
+    <div class="card">
+      <a href="/products/<%= p.slug %>">
+        <img src="<%= p.images?.[0] || '/images/products/no-image.jpg' %>" alt="<%= p.name %>" class="product-image" />
+      </a>
+      <div class="container">
+        <h3><a href="/products/<%= p.slug %>"><%= p.name %></a></h3>
+        <p><%= p.price.toLocaleString('vi-VN') %> VNĐ</p>
+      </div>
+    </div>
+    <% }) %>
+  </div>
+</div>
+<!-- Best Sellers Section -->
+<div class="bestSellers">
+  <div class="bestSellers-text">
+    <h1>Best Sellers</h1>
+    <p>Discover our most popular products that customers love.</p>
+  </div>
+  <div class="grid">
+    <% bestSellers.forEach(p => { %>
+    <div class="card">
+      <a href="/products/<%= p.slug %>">
+        <img src="<%= p.images?.[0] || '/images/products/no-image.jpg' %>" alt="<%= p.name %>" class="product-image" />
+      </a>
+      <div class="container">
+        <h3><a href="/products/<%= p.slug %>"><%= p.name %></a></h3>
+        <p><%= p.price.toLocaleString('vi-VN') %> VNĐ</p>
+      </div>
+    </div>
+    <% }) %>
+  </div>
+</div>
+<!-- Brand Section -->
+<div class="brand">
+  <div class="brand-text">
+    <h1>Brand</h1>
+    <p>Explore our exclusive brand collections.</p>
+  </div>
+  <div class="grid">
+    <% brands.forEach(p => { %>
+    <div class="card">
+      <a href="/products/<%= p.slug %>">
+        <img src="<%= p.images?.[0] || '/images/products/no-image.jpg' %>" alt="<%= p.name %>" class="product-image" />
+      </a>
+      <div class="container">
+        <h3><a href="/products/<%= p.slug %>"><%= p.name %></a></h3>
+        <p><%= p.price.toLocaleString('vi-VN') %> VNĐ</p>
+      </div>
+    </div>
+    <% }) %>
+  </div>
+  <button class="btn-view-more" onclick="location.href='/products'">
+    View More
+    <i class="ti-arrow-right"></i>
+  </button>
+</div>
+
+<!-- About Section -->
+<div class="about" id="about-us">
+  <div class="about-image">
+    <img src="/images/about-bgr.jpg" alt="About Us" />
+  </div>
+  <div class="about-text">
+    <h2>About Kevin's Fashion Shop</h2>
+    <p>
+      we are dedicated to bringing you the latest trends and timeless styles. Our curated collections feature high-quality apparel and accessories
+      that cater to diverse tastes. Whether you're looking for casual wear or elegant outfits, we have something for everyone. Experience exceptional
+      customer service and a seamless shopping experience with us.
+    </p>
+  </div>
+</div>
