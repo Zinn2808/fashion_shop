@@ -1070,6 +1070,23 @@ a {
   transform: translateY(-2px);
 }
 
+#momo-button-container button {
+  border: none;
+  color: white;
+  font-size: 16px;
+  padding: 10px 20px;
+  border-radius: 5px;
+  background-color: #b83d85;
+  font-family: "Courier New", monospace;
+  cursor: pointer;
+}
+
+#momo-button-container button:hover {
+  background-color: #9c316f;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+  transform: translateY(-2px);
+}
+
 /* Right */
 .products-summary {
   flex: 1;

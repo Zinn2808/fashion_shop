@@ -307,3 +307,164 @@
 }
 
 /* ======================================================Manager Order======================================================== */
+/* detail */
+.container-detail {
+  max-width: 1200px;
+  margin: 170px auto;
+  padding: 20px;
+  font-family: "Courier New", monospace;
+  border-radius: 5px;
+  box-shadow: 1px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.detail-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid #eee;
+}
+
+.btn-back {
+  text-decoration: none;
+  color: #555;
+  font-weight: 600;
+}
+
+a.btn-back {
+  padding: 10px 15px;
+  border: none;
+  border-radius: 2px;
+  background-color: var(--white);
+  color: var(--black);
+  font-size: 16px;
+  font-family: "Courier New", monospace;
+  text-decoration: none;
+  text-align: center;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.3s ease-in-out;
+}
+a.btn-back:hover {
+  background-color: var(--red);
+  color: var(--white);
+  box-shadow: 0 2px 4px rgba(0, 0, 0.5);
+  transform: translateY(-2px);
+}
+
+.order-meta {
+  font-family: "Courier New", monospace;
+  font-size: 16px;
+  padding: 0px 30px;
+}
+
+.order-meta h1 {
+  font-size: 24px;
+  margin: 0;
+  display: inline-block;
+  margin-right: 10px;
+}
+
+.detail-grid {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 20px;
+  font-family: "Courier New", monospace;
+}
+
+.info-card,
+.items-card {
+  background: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  border: 1px solid #ddd;
+}
+
+.info-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  font-size: 14px;
+}
+
+.address-text {
+  background: #f9f9f9;
+  padding: 10px;
+  border-radius: 4px;
+  color: #333;
+}
+
+/* Bảng sản phẩm */
+.table-items {
+  width: 100%;
+  border-collapse: collapse;
+}
+.table-items th {
+  text-align: left;
+  border-bottom: 1px solid #ccc;
+  padding: 10px 0;
+  color: #666;
+  font-size: 13px;
+}
+.table-items td {
+  padding: 12px 0;
+  border-bottom: 1px dotted #eee;
+  vertical-align: middle;
+}
+
+.item-info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.item-info img {
+  border-radius: 4px;
+  border: 1px solid #eee;
+}
+.item-name {
+  margin: 0;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.text-end {
+  text-align: right;
+}
+.text-center {
+  text-align: center;
+}
+.fw-bold {
+  font-weight: bold;
+}
+
+.total-price {
+  font-size: 18px;
+  color: #d9534f;
+  font-weight: bold;
+}
+
+/* Badge màu sắc (Copy từ trang list qua cũng được) */
+.status-badge {
+  padding: 5px 10px;
+  border-radius: 4px;
+  color: #fff;
+  font-size: 12px;
+  font-weight: bold;
+}
+.pending {
+  background: #f0ad4e;
+}
+.processing {
+  background: #5bc0de;
+}
+.shipped {
+  background: #0275d8;
+}
+.delivered {
+  background: #5cb85c;
+}
+.cancelled {
+  background: #d9534f;
+}

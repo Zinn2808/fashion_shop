@@ -8,6 +8,9 @@
   <div class="form-container">
     <h1>Create an account</h1>
     <p>Already have an account? <a href="/auth/login">Login</a></p>
+    <% if (typeof error !== 'undefined') { %>
+    <div class="error-message" style="color: red; font-weight: bold"><%= error %></div>
+    <% } %>
     <form method="post" action="/auth/register">
       <input type="text" name="name" placeholder="Name" required />
       <input type="email" name="email" placeholder="Email" required />
@@ -15,9 +18,7 @@
       <!-- đồng ý chính sách -->
       <div class="terms">
         <input type="checkbox" name="terms" required />
-        <label for="terms">
-          I agree to the <a href="#">Terms of Service</a>
-        </label>
+        <label for="terms"> I agree to the <a href="#">Terms of Service</a> </label>
       </div>
       <button>Register</button>
     </form>

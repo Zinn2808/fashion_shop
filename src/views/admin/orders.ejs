@@ -1,25 +1,26 @@
 <!-- src/views/admin/orders.ejs -->
 <div class="container-admin-orders">
   <div class="title-admin-orders">
-    <h1>Quản lý đơn hàng</h1>
+    <h1>Manage Orders</h1>
   </div>
 
   <div class="table-responsive">
     <table class="table table-striped table-hover">
       <thead class="table-dark">
         <tr>
-          <th>Mã đơn</th>
-          <th>Khách hàng</th>
-          <th class="text-end">Tổng tiền</th>
-          <th>Trạng thái</th>
-          <th>Hành động</th>
+          <th>Order ID</th>
+          <th>Customer</th>
+          <th class="text-end">Total</th>
+          <th>Details</th>
+          <th>Status</th>
+          <th>Actions</th>
         </tr>
       </thead>
 
       <tbody>
         <% if (orders.length === 0) { %>
           <tr>
-            <td colspan="5" class="text-center py-4">Chưa có đơn hàng nào</td>
+            <td colspan="6" class="text-center py-4">No orders found</td>
           </tr>
         <% } else { %>
           <% orders.forEach(order => { %>
@@ -36,6 +37,10 @@
               <td class="text-end fw-bold">
                 <%= order.total.toLocaleString('vi-VN') %> ₫
               </td>
+              
+              <td>
+                <a href="/admin/orders/<%= order._id %>" class="btn btn-info btn-sm">View Details</a>
+              </td>
 
               <td>
                 <span class="badge status-badge <%= order.status %>" id="status-<%= order._id %>">
@@ -45,8 +50,8 @@
                     shipped: "Đã giao vận chuyển",
                     delivered: "Đã giao hàng",
                     cancelled: "Đã hủy",
-                    paid: "Đã thanh toán"
-                    payment_pending: "Chờ thanh toán"
+                    paid: "Đã thanh toán",
+                    pending_payment: "Chờ thanh toán"
                   }[order.status] || order.status %>
                 </span>
               </td>
@@ -63,7 +68,7 @@
                     <option value="cancelled" <%= order.status === 'cancelled' ? 'selected' : '' %>>Đã hủy</option>
                   </select>
 
-                  <button type="submit" class="btn btn-primary">Cập nhật</button>
+                  <button type="submit" class="btn btn-primary">Update</button>
                 </form>
               </td>
             </tr>

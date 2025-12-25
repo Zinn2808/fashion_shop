@@ -68,7 +68,6 @@ app.use((req, res, next) => {
 app.use((req, res, next) => {
   res.locals.user = req.session.user || null;
   res.locals.cartCount = (req.session.cart || []).reduce((s, i) => s + i.qty, 0);
-  res.locals.stripePublishableKey = process.env.STRIPE_PUBLISHABLE_KEY || ""; // TRUYỀN STRIPE PUBLISHABLE KEY CHO VIEW
   next();
 });
 
