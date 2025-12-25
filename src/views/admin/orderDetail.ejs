@@ -2,7 +2,7 @@
   <div class="detail-header">
     <a href="/admin/orders" class="btn-back">← Quay lại danh sách</a>
     <div class="order-meta">
-      <h1>Đơn hàng #<%= order._id.toString().slice(-6).toUpperCase() %></h1>
+      <h1>Đơn hàng #<%= order._id.toString().toUpperCase() %></h1>
       <span class="badge status-badge <%= order.status %>"> <%= order.status.toUpperCase() %> </span>
     </div>
   </div>
@@ -30,7 +30,7 @@
 
       <div class="info-row">
         <strong>Phương thức thanh toán:</strong>
-        <span><%= order.paymentMethod || 'COD' %></span>
+        <span><%= order.payment?.method || 'COD' %></span>
       </div>
     </div>
 
@@ -51,30 +51,38 @@
             <td>
               <div class="item-info">
                 <% if(item.product) { %>
-                <img src="<%= item.product.imageUrl || '/images/default.png' %>" alt="" width="50" />
-                <div>
-                  <p class="item-name"><%= item.product.title %></p>
-                  <small class="text-muted">ID: <%= item.product._id %></small>
+                <img
+                  src="<%= item.product?.imagesByColor?.get(item.color) || item.product?.images?.[0] || '/images/default.png' %>"
+                  alt="<%= item.product?.name %>"
+                  width="50"
+                />
+
+                <div class="item-details">
+                  <p class="item-name">Name: <%= item.product.name %></p>
                 </div>
                 <% } else { %>
                 <span class="text-danger">Sản phẩm này đã bị xóa</span>
                 <% } %>
               </div>
             </td>
-            <td class="text-center">x<%= item.quantity %></td>
-            <td class="text-end"><%= item.price.toLocaleString() %> ₫</td>
-            <td class="text-end fw-bold"><%= (item.price * item.quantity).toLocaleString() %> ₫</td>
+            <td class="text-center">x<%= item.qty %></td>
+            <td class="text-end"><%= item.price.toLocaleString() %> VND</td>
+            <td class="text-end fw-bold"><%= (item.price * item.qty).toLocaleString() %> VND</td>
           </tr>
           <% }) %>
         </tbody>
         <tfoot>
           <tr>
+            <td colspan="3" class="text-end">Phí vận chuyển:</td>
+            <td class="text-end"><%= order.shippingFee.toLocaleString() %> VND</td>
+          </tr>
+          <tr>
             <td colspan="3" class="text-end">Tạm tính:</td>
-            <td class="text-end"><%= (order.total).toLocaleString() %> ₫</td>
+            <td class="text-end"><%= (order.total).toLocaleString() %> VND</td>
           </tr>
           <tr>
             <td colspan="3" class="text-end"><strong>Tổng cộng:</strong></td>
-            <td class="text-end total-price"><%= order.total.toLocaleString() %> ₫</td>
+            <td class="text-end total-price"><%= order.total.toLocaleString() %> VND</td>
           </tr>
         </tfoot>
       </table>

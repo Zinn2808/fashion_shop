@@ -26,7 +26,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // 2. Logic Thanh toán & Phí vận chuyển
   const checkoutForm = document.getElementById("checkoutForm");
 
-  // Chỉ chạy logic thanh toán nếu có form (tránh lỗi ở các trang khác)
+  // Chỉ chạy logic thanh toán nếu có form
   if (checkoutForm) {
     const citySelect = document.getElementById("city");
     const FAST_CITIES = ["Hà Nội", "Hồ Chí Minh", "Đà Nẵng"];
@@ -144,6 +144,46 @@ document.addEventListener("DOMContentLoaded", () => {
         alert("Lỗi kết nối đến server");
       }
     });
+    // 5. Xử lý submit form cho COD
+    checkoutForm.addEventListener("submit", async (e) => {
+      const selected = document.querySelector(".payment-option.selected");
+      const method = selected?.dataset.method;
+
+      // Nếu là MOMO thì để momoBtn xử lý
+      if (method === "momo") return;
+
+      // COD → chặn submit mặc định
+      e.preventDefault();
+
+      // Validate form
+      if (!checkoutForm.checkValidity()) {
+        checkoutForm.reportValidity();
+        return;
+      }
+
+      const formData = new FormData(checkoutForm);
+      const dataObj = Object.fromEntries(formData.entries());
+      dataObj.paymentMethod = "COD";
+
+      try {
+        const res = await fetch("/orders/checkout", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(dataObj),
+        });
+
+        const result = await res.json();
+
+        if (result.success && result.redirect) {
+          window.location.href = result.redirect;
+        } else {
+          alert(result.error || "Đặt hàng COD thất bại");
+        }
+      } catch (err) {
+        console.error(err);
+        alert("Lỗi kết nối server");
+      }
+    });
   }
 });
 
@@ -162,7 +202,7 @@ if (typeof io !== "undefined") {
       const text = getStatusText(status);
       statusEl.textContent = text;
 
-      // Cập nhật class để đổi màu trạng thái (nếu CSS có hỗ trợ)
+      // Cập nhật class để đổi màu trạng thái
       statusEl.className = `status ${status}`;
     }
   });

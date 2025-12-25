@@ -73,7 +73,7 @@ export const adminCreateProduct = async (req, res) => {
   res.redirect("/admin/products");
 };
 
-// ✅ Update
+// Update
 export const adminUpdateProduct = async (req, res) => {
   const { productId, name, price, stock = 0, category = "Khác", description = "", badges, colors, sizes } = req.body;
 

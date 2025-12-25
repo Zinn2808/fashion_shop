@@ -9,7 +9,7 @@ export const home = async (req, res) => {
     ]);
 
     res.render("home", {
-      title: "Fashion Shop",
+      title: "Kevin's Shop",
       featured,
       bestSellers,
       brands,
