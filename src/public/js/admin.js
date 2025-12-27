@@ -1,7 +1,7 @@
 // src/public/js/admin.js
 console.log("admin.js loaded");
 
-// === QUẢN LÝ SẢN PHẨM (nếu có trang /admin/products) ===
+// === QUẢN LÝ SẢN PHẨM ===
 document.addEventListener("DOMContentLoaded", function () {
   const imageInput = document.getElementById("image");
   const fileNameSpan = document.getElementById("file-name");

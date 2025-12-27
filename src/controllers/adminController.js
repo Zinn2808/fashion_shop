@@ -43,14 +43,12 @@ export const adminProducts = async (req, res) => {
 export const adminCreateProduct = async (req, res) => {
   const { name, price, stock = 0, category = "Khác", description = "", badges, colors, sizes } = req.body;
 
-  // badges có thể là string hoặc array
   const badgesArr = Array.isArray(badges) ? badges : badges ? [badges] : [];
 
   // colors/sizes từ input “comma separated”
   const colorsArr = parseCSV(colors);
   const sizesArr = parseCSV(sizes);
 
-  // ảnh (nếu up)
   let images = [];
   if (req.file) {
     const rel = "/images/products/" + path.basename(req.file.path);
@@ -73,7 +71,6 @@ export const adminCreateProduct = async (req, res) => {
   res.redirect("/admin/products");
 };
 
-// Update
 export const adminUpdateProduct = async (req, res) => {
   const { productId, name, price, stock = 0, category = "Khác", description = "", badges, colors, sizes } = req.body;
 
@@ -83,7 +80,7 @@ export const adminUpdateProduct = async (req, res) => {
 
   const $set = {
     name,
-    slug: slugify(name), // có thể thêm hậu tố thời gian nếu muốn unique
+    slug: slugify(name),
     price: Number(price),
     stock: Number(stock),
     category,
@@ -95,7 +92,7 @@ export const adminUpdateProduct = async (req, res) => {
 
   if (req.file) {
     const rel = "/images/products/" + path.basename(req.file.path);
-    $push.images = [rel]; // nếu muốn cộng dồn ảnh: dùng $push/$addToSet thay vì ghi đè
+    $push.images = [rel];
   }
 
   await Product.updateOne({ _id: productId }, { $set });

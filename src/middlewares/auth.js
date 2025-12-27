@@ -12,7 +12,7 @@ export function ensureAdmin(req, res, next) {
   const user = req.session.user;
 
   if (!user) {
-    // Chưa đăng nhập → đưa về login
+    // Chưa đăng nhập  đưa về login
     const nextUrl = encodeURIComponent(req.originalUrl);
     return res.redirect(`/auth/login?next=${nextUrl}`);
   }

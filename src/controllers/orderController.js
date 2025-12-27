@@ -34,7 +34,7 @@ export const createOrder = async (req, res) => {
     const shippingFee = isFast ? EXPRESS_FEE : STANDARD_FEE;
     const grandTotal = subtotal + shippingFee;
 
-    // 2. Tạo đơn hàng (Trạng thái chờ thanh toán nếu là MOMO)
+    // 2. Tạo đơn hàng
     const order = await Order.create({
       user: req.session.user?._id,
       items: cart.map((i) => ({ product: i.productId, qty: i.qty, price: i.price })),
@@ -51,7 +51,7 @@ export const createOrder = async (req, res) => {
 
     // 3. Xử lý COD
     if (method === "COD") {
-      // Trừ kho ngay lập tức
+      // Trừ kho
       for (const item of cart) {
         await Product.updateOne({ _id: item.productId }, { $inc: { stock: -item.qty } });
       }
@@ -83,20 +83,18 @@ export const momoSuccess = async (req, res) => {
     const order = await Order.findById(orderId);
     if (!order) return res.redirect("/orders");
 
-    // TRƯỜNG HỢP 1: THẤT BẠI HOẶC HỦY (resultCode != 0)
+    // TRƯỜNG HỢP 1: THẤT BẠI HOẶC HỦY)
     // Người dùng bấm "Hủy" hoặc tắt tab MoMo quay về
     if (resultCode != "0") {
-      // Cập nhật trạng thái thành ĐÃ HỦY để không bị treo đơn
+      // Cập nhật trạng thái thành ĐÃ HỦY
       await Order.findByIdAndUpdate(orderId, {
         status: "cancelled",
         "payment.status": "failed",
       });
-
-      // Không trừ kho, không xóa giỏ hàng (để họ mua lại nếu muốn)
       return res.redirect("/orders");
     }
 
-    // TRƯỜNG HỢP 2: THÀNH CÔNG (resultCode == 0)
+    // TRƯỜNG HỢP 2: THÀNH CÔNG
     // Kiểm tra để tránh trừ kho 2 lần nếu user refresh trang
     if (order.status === "paid") {
       return res.redirect("/orders");
@@ -109,7 +107,7 @@ export const momoSuccess = async (req, res) => {
 
     // 2. Cập nhật đơn hàng thành ĐÃ THANH TOÁN
     await Order.findByIdAndUpdate(orderId, {
-      status: "paid", // Hoặc 'processing' tùy quy trình của bạn
+      status: "paid",
       "payment.status": "success",
       "payment.transactionId": req.query.transId || "", // Lưu mã giao dịch MoMo
       "payment.paidAt": new Date(),

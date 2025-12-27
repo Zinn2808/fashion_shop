@@ -1,4 +1,3 @@
-// src/public/js/app.js
 console.log("Đã tải file app.js");
 
 // Hàm hỗ trợ: Định dạng ngày giờ theo múi giờ Việt Nam
